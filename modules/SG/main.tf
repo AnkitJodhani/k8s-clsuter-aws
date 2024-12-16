@@ -53,6 +53,29 @@ resource "aws_security_group" "master" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # New Cilium-specific rules
+  ingress {
+    description = "VXLAN overlay networking (Cilium)"
+    from_port   = 8472
+    to_port     = 8472
+    protocol    = "udp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+  ingress {
+    description = "Cilium health checks"
+    from_port   = 4240
+    to_port     = 4240
+    protocol    = "tcp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+  ingress {
+    description = "ICMP for Cilium health checks"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -96,6 +119,29 @@ resource "aws_security_group" "worker" {
     from_port   = 10250
     to_port     = 10250
     protocol    = "tcp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+
+  # New Cilium-specific rules
+  ingress {
+    description = "VXLAN overlay networking (Cilium)"
+    from_port   = 8472
+    to_port     = 8472
+    protocol    = "udp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+  ingress {
+    description = "Cilium health checks"
+    from_port   = 4240
+    to_port     = 4240
+    protocol    = "tcp"
+    cidr_blocks = [var.VPC_CIDR]
+  }
+  ingress {
+    description = "ICMP for Cilium health checks"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = [var.VPC_CIDR]
   }
 
