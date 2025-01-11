@@ -10,6 +10,10 @@ resource "aws_instance" "servers" {
   user_data              = filebase64(each.value.script_file)
   tags = {
     Name = each.value.name
+    CKA = "ok"
+    CKS = "ok"
+    Kubernetes = "ok"
+    kubernetes = "ok"
   }
 }
 

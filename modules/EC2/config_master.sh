@@ -176,6 +176,7 @@ echo 'alias kds="kubectl delete service"' >> /home/ubuntu/.bashrc
 echo 'alias kdn="kubectl delete namespace"' >> /home/ubuntu/.bashrc
 echo 'alias kdp="kubectl delete pod"' >> /home/ubuntu/.bashrc
 echo 'alias kaf="kubectl apply -f"' >> /home/ubuntu/.bashrc
+echo 'alias kdf="kubectl delete -f"' >> /home/ubuntu/.bashrc
 
 sleep 40
 
